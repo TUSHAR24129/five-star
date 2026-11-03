@@ -1,308 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Retail Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — FIVE STAR RETAIL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f7f5f0;--surface:#ffffff;--surface2:#f0ede6;--border:#e5e0d6;
+  --fg:#1a1208;--fg2:#6b6050;--fg3:#9c8f7e;
+  --accent:#2d6a4f;--accent-mid:#40916c;--accent-lt:#d8f3dc;
+  --gold:#e9a924;--gold-lt:#fef3c7;
+  --hero-bg:#1a2e1e;--nav-bg:#1a2e1e;
+  --radius:14px;--radius-sm:8px;
+  --shadow:0 2px 12px rgba(26,18,8,.08);--shadow-lg:0 8px 32px rgba(26,18,8,.14);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1a10;--surface:#172218;--surface2:#1f2e21;--border:#2a3c2c;
+  --fg:#e8f5ea;--fg2:#9ab89d;--fg3:#6a8a6d;
+  --accent:#52b788;--accent-mid:#74c69d;--accent-lt:#1b4332;
+  --gold:#f59e0b;--gold-lt:#292008;--hero-bg:#0a1a0c;--nav-bg:#0d1f10;color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1a10;--surface:#172218;--surface2:#1f2e21;--border:#2a3c2c;
+  --fg:#e8f5ea;--fg2:#9ab89d;--fg3:#6a8a6d;
+  --accent:#52b788;--accent-mid:#74c69d;--accent-lt:#1b4332;
+  --gold:#f59e0b;--gold-lt:#292008;--hero-bg:#0a1a0c;--nav-bg:#0d1f10;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0;}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+/* ── Navbar ── */
+.navbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--nav-bg);
+  padding:0 max(24px,env(safe-area-inset-left,0px));display:flex;align-items:center;
+  justify-content:space-between;gap:20px;min-height:64px;border-bottom:1px solid rgba(255,255,255,.06);}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:110;background:var(--nav-bg);}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;
+  font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;white-space:nowrap;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;padding:6px 12px;
+  border-radius:var(--radius-sm);font-size:.875rem;font-weight:500;transition:color .2s,background .2s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1);}
+.nav-actions{display:flex;align-items:center;gap:8px;}
+.nav-btn{background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);
+  padding:8px 14px;font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;
+  text-decoration:none;transition:background .2s;}
+.nav-btn:hover{background:var(--accent-mid);}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ── Hero ── */
+.page-hero{background:var(--hero-bg);
+  margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding:64px max(48px,env(safe-area-inset-left,0px)) 70px;
+  position:relative;overflow:hidden;text-align:center;}
+.page-hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 110%,rgba(64,145,108,.45) 0%,transparent 65%);pointer-events:none;}
+.page-hero::after{content:"🌿";position:absolute;font-size:22vw;opacity:.05;
+  right:-4%;bottom:-10%;pointer-events:none;line-height:1;}
+.page-hero-inner{position:relative;max-width:620px;margin:0 auto;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);
+  font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;}
+.page-hero p{color:rgba(255,255,255,.65);font-size:1.05rem;}
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f8fafc;
-            color: #333;
-        }
+/* ── Main ── */
+.main-wrap{max-width:900px;margin:0 auto;padding-block:52px 72px;}
 
-        /* ── Navbar (matches index.html / home.html) ── */
-        .navbar {
-            background: #1e293b;
-        }
+/* ── Section cards ── */
+.section-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:32px 36px;margin-bottom:22px;
+  transition:transform .2s,box-shadow .2s;}
+.section-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.section-card h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;
+  color:var(--fg);margin-bottom:14px;padding-left:16px;
+  border-left:4px solid var(--accent);}
+.section-card p,.section-card li{color:var(--fg2);line-height:1.8;font-size:.95rem;}
+.section-card ul{padding-left:22px;}
+.section-card strong{color:var(--fg);}
 
-        .navbar-brand,
-        .nav-link {
-            color: white !important;
-        }
+/* ── Why badges ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+@media(max-width:540px){.why-grid{grid-template-columns:1fr;}}
+.why-badge{background:var(--accent-lt);border:1px solid rgba(45,106,79,.2);
+  border-radius:var(--radius-sm);padding:14px 18px;display:flex;align-items:center;
+  gap:12px;font-weight:600;font-size:.88rem;color:var(--accent);}
+.why-badge .icon{font-size:1.3rem;flex-shrink:0;}
 
-        .nav-link:hover {
-            color: #93c5fd !important;
-        }
+/* ── Team ── */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:20px;}
+.team-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 16px;text-align:center;transition:transform .2s,box-shadow .2s;}
+.team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.team-avatar{width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;font-size:1.6rem;font-weight:800;color:#fff;font-family:'Playfair Display',serif;}
+.team-name{font-weight:700;font-size:.95rem;color:var(--fg);margin-bottom:3px;}
+.team-role{font-size:.78rem;color:var(--fg3);}
 
-        /* ── Page Hero Banner ── */
-        .page-hero {
-            background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-                        url('image1.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
+/* ── Footer ── */
+footer{background:var(--nav-bg);color:rgba(255,255,255,.5);text-align:center;
+  padding:28px max(24px,env(safe-area-inset-left,0px));font-size:.82rem;
+  margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));}
+footer strong{color:rgba(255,255,255,.8);}
 
-        .page-hero h1 {
-            font-size: 52px;
-            font-weight: bold;
-        }
-
-        .page-hero p {
-            font-size: 20px;
-            margin-top: 12px;
-            opacity: 0.9;
-        }
-
-        /* ── Section Cards ── */
-        .section-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,.08);
-            padding: 35px;
-            margin-bottom: 25px;
-            transition: 0.3s;
-        }
-
-        .section-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,.12);
-        }
-
-        .section-card h2 {
-            color: #1e293b;
-            font-size: 26px;
-            margin-bottom: 14px;
-            border-left: 4px solid #2563eb;
-            padding-left: 14px;
-        }
-
-        .section-card p,
-        .section-card li {
-            color: #555;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .section-card ul {
-            padding-left: 20px;
-        }
-
-        /* ── Team Cards ── */
-        .team-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,.08);
-            padding: 25px 15px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .team-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(0,0,0,.12);
-        }
-
-        .team-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-        }
-
-        .team-card h5 {
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-
-        .team-card p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        /* ── Why Us Badges ── */
-        .why-badge {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 10px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 500;
-            color: #1e40af;
-            margin-bottom: 12px;
-        }
-
-        .why-badge span.icon {
-            font-size: 22px;
-        }
-
-        /* ── Footer (matches site) ── */
-        footer {
-            background: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 60px;
-        }
-    </style>
+@media(max-width:600px){.page-hero{padding:48px 24px 54px;}.section-card{padding:24px 20px;}.nav-links{display:none;}}
+@media(prefers-reduced-motion:reduce){.section-card,.team-card{transition:none;}}
+</style>
 </head>
-
 <body>
 
 <!-- ── Navbar ── -->
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-
-        <a class="navbar-brand" href="index.html">🛒 Retail Shop</a>
-
-        <button class="navbar-toggler bg-light"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                <li class="nav-item"><a class="nav-link" href="orders.html">Orders</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-            </ul>
-        </div>
-
-    </div>
+<nav class="navbar">
+  <a class="nav-brand" href="index.html">🌿 FIVE STAR RETAIL</a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="orders.html">Orders</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="About_us.html" class="active">About Us</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" id="login-nav" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:.875rem;font-weight:500;padding:6px 10px;">Login</a>
+    <a class="nav-btn" href="products.html">🛒 Shop</a>
+  </div>
 </nav>
 
-<!-- ── Hero Banner ── -->
+<!-- ── Hero ── -->
 <section class="page-hero">
+  <div class="page-hero-inner">
     <h1>About Our Store</h1>
-    <p>Learn who we are, what we stand for, and the people behind the shop.</p>
+    <p>Learn who we are, what we stand for, and the people behind the market.</p>
+  </div>
 </section>
 
-<!-- ── Main Content ── -->
-<div class="container py-5">
+<!-- ── Content ── -->
+<div class="main-wrap">
 
-    <!-- Who We Are -->
-    <div class="section-card">
-        <h2>Who We Are</h2>
-        <p>Welcome to <strong>FIVE-STAR Retail Store</strong> — your trusted destination for quality products at
-           affordable prices. We are committed to delivering exceptional customer service and a seamless shopping
-           experience both online and in-store.</p>
+  <!-- Who We Are -->
+  <div class="section-card">
+    <h2>Who We Are</h2>
+    <p>Welcome to <strong>FIVE STAR RETAIL</strong> — your trusted neighbourhood destination for quality groceries at affordable prices. We are committed to delivering exceptional customer service and a seamless shopping experience, both online and in-store.</p>
+  </div>
+
+  <!-- Project Description -->
+  <div class="section-card">
+    <h2>Project Description</h2>
+    <p>The FIVE STAR RETAIL project aims to create a modern, user-friendly online grocery platform that lets customers browse, compare, and purchase fresh produce with ease. The platform integrates essential features such as product listings, secure checkout, real-time cart management, order tracking, and customer support — enhancing the digital shopping experience while maintaining the reliability our customers expect.</p>
+  </div>
+
+  <!-- Problem Statement -->
+  <div class="section-card">
+    <h2>Problem Statement</h2>
+    <p>Many customers struggle with unreliable online stores, poor product information, slow delivery, and unresponsive customer service. These challenges create frustration and reduce trust in digital shopping platforms. FIVE STAR RETAIL addresses these issues by offering a transparent, efficient, and customer-focused retail experience — with accurate product details, fast same-day delivery options, secure payments, and dedicated support.</p>
+  </div>
+
+  <!-- Our Mission -->
+  <div class="section-card">
+    <h2>Our Mission</h2>
+    <p>Our mission is simple: bring fresh, high-quality food straight from local farms and suppliers to your door. We carefully source every product to ensure freshness, value, and sustainability — making everyday grocery shopping a pleasure, not a chore.</p>
+  </div>
+
+  <!-- Why Shop With Us -->
+  <div class="section-card">
+    <h2>Why Shop With Us</h2>
+    <div class="why-grid">
+      <div class="why-badge"><span class="icon">🥬</span> Farm-fresh produce daily</div>
+      <div class="why-badge"><span class="icon">💰</span> Affordable, competitive pricing</div>
+      <div class="why-badge"><span class="icon">🚚</span> Same-day delivery available</div>
+      <div class="why-badge"><span class="icon">💬</span> Friendly customer support</div>
     </div>
+  </div>
 
-    <!-- Project Description -->
-    <div class="section-card">
-        <h2>Project Description</h2>
-        <p>The FIVE-STAR Retail Store project aims to create a modern, user-friendly online shopping platform
-           that allows customers to browse, compare, and purchase products with ease. The website integrates
-           essential retail features such as product listings, secure checkout, customer support, and
-           personalised recommendations. Our goal is to enhance the digital shopping experience while
-           maintaining the reliability and trust our customers expect.</p>
+  <!-- Meet the Team -->
+  <div class="section-card">
+    <h2>Meet the Team</h2>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#2d6a4f;">J</div>
+        <div class="team-name">Jackline</div>
+        <div class="team-role">Store Manager</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#16a34a;">S</div>
+        <div class="team-name">Srijan</div>
+        <div class="team-role">Customer Support Lead</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#9333ea;">T</div>
+        <div class="team-name">Tushar</div>
+        <div class="team-role">Product Specialist</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#dc2626;">S</div>
+        <div class="team-name">Sanja</div>
+        <div class="team-role">Assistant Manager</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#ea580c;">M</div>
+        <div class="team-name">Manish</div>
+        <div class="team-role">Marketing Specialist</div>
+      </div>
+
     </div>
-
-    <!-- Problem Statement -->
-    <div class="section-card">
-        <h2>Problem Statement</h2>
-        <p>Many customers struggle with unreliable online stores, poor product information, slow delivery,
-           and unresponsive customer service. These issues create frustration and reduce trust in online
-           shopping platforms. FIVE-STAR Retail Store addresses these challenges by offering a transparent,
-           efficient, and customer-focused retail experience — with accurate product details, fast delivery
-           options, secure payments, and dedicated support.</p>
-    </div>
-
-    <!-- Our Mission -->
-    <div class="section-card">
-        <h2>Our Mission</h2>
-        <p>Our mission is simple: provide high-quality products that bring value to your everyday life.
-           We carefully select every item to ensure durability, style, and affordability.</p>
-    </div>
-
-    <!-- Why Shop With Us -->
-    <div class="section-card">
-        <h2>Why Shop With Us</h2>
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <div class="why-badge"><span class="icon">🛍️</span> Wide range of quality products</div>
-                <div class="why-badge"><span class="icon">💰</span> Affordable, competitive pricing</div>
-            </div>
-            <div class="col-md-6">
-                <div class="why-badge"><span class="icon">🚚</span> Fast & reliable delivery</div>
-                <div class="why-badge"><span class="icon">💬</span> Friendly customer support</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Meet the Team -->
-    <div class="section-card">
-        <h2>Meet the Team</h2>
-        <div class="row g-4 mt-1">
-
-            <div class="col-6 col-md-4 col-lg-2-4">
-                <div class="team-card">
-                    <div class="team-avatar">J</div>
-                    <h5>Jackline</h5>
-                    <p>Store Manager</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-2-4">
-                <div class="team-card">
-                    <div class="team-avatar" style="background:#16a34a;">S</div>
-                    <h5>Srijan</h5>
-                    <p>Customer Support Lead</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-2-4">
-                <div class="team-card">
-                    <div class="team-avatar" style="background:#9333ea;">T</div>
-                    <h5>Tushar</h5>
-                    <p>Product Specialist</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-2-4">
-                <div class="team-card">
-                    <div class="team-avatar" style="background:#dc2626;">S</div>
-                    <h5>Sanja</h5>
-                    <p>Assistant Manager</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-2-4">
-                <div class="team-card">
-                    <div class="team-avatar" style="background:#ea580c;">M</div>
-                    <h5>Manish</h5>
-                    <p>Marketing Specialist</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
+  </div>
 
 </div>
 
 <!-- ── Footer ── -->
-<footer>
-    <p>© 2026 Retail Shop | All Rights Reserved</p>
-</footer>
+<footer><strong>🌿 FIVE STAR RETAIL</strong> — Your local grocery, online &nbsp;·&nbsp; © 2026</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+const n=localStorage.getItem('userName');const e=document.getElementById('login-nav');
+if(n&&e)e.textContent='👤 '+n;
+</script>
 </body>
 </html>

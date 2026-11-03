@@ -3,194 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Products | Retail Shop</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Products - Fresh Market</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-body { font-family:'Segoe UI',sans-serif; background:#f8fafc; }
-.navbar { background:#1e293b; }
-.navbar-brand, .nav-link { color:white !important; }
-.nav-link:hover { color:#93c5fd !important; }
-.page-hero {
-    background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url('images/image1.jpg');
-    background-size:cover;
-    background-position:center;
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-}
-.page-hero h1 { font-size:48px; font-weight:bold; }
-.product-card { transition:0.3s; border:none; border-radius:15px; }
-.product-card:hover { transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,.12) !important; }
-.product-card .card-body { text-align:center; padding:25px; }
-.btn-filter.active { background:#1e293b; color:white; }
-footer { background:#1e293b; color:white; padding:20px; text-align:center; margin-top:60px; }
+:root{--bg:#f7f5f0;--surface:#fff;--surface2:#f0ede6;--border:#e5e0d6;--fg:#1a1208;--fg2:#6b6050;--fg3:#9c8f7e;--accent:#2d6a4f;--accent-mid:#40916c;--accent-lt:#d8f3dc;--gold:#e9a924;--gold-lt:#fef3c7;--nav-bg:#1a2e1e;--danger:#dc2626;--radius:14px;--radius-sm:8px;--shadow:0 2px 12px rgba(26,18,8,.08);--shadow-lg:0 8px 32px rgba(26,18,8,.14);}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a10;--surface:#172218;--surface2:#1f2e21;--border:#2a3c2c;--fg:#e8f5ea;--fg2:#9ab89d;--fg3:#6a8a6d;--accent:#52b788;--accent-mid:#74c69d;--accent-lt:#1b4332;--gold:#f59e0b;--gold-lt:#292008;--nav-bg:#0d1f10;color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#0e1a10;--surface:#172218;--surface2:#1f2e21;--border:#2a3c2c;--fg:#e8f5ea;--fg2:#9ab89d;--fg3:#6a8a6d;--accent:#52b788;--accent-mid:#74c69d;--accent-lt:#1b4332;--gold:#f59e0b;--gold-lt:#292008;--nav-bg:#0d1f10;color-scheme:dark;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+.navbar{position:sticky;top:0;z-index:100;background:var(--nav-bg);padding:0 max(24px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;padding:6px 12px;border-radius:var(--radius-sm);font-size:.875rem;font-weight:500;transition:color .2s,background .2s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1);}
+.nav-actions{display:flex;align-items:center;gap:8px;}
+.nav-btn{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);padding:8px 14px;font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;}
+.cart-count{background:#fff;color:var(--accent);border-radius:99px;padding:1px 6px;font-size:.72rem;font-weight:700;}
+.page-header{margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));background:var(--nav-bg);padding:36px max(40px,env(safe-area-inset-left,0px)) 32px;position:relative;overflow:hidden;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;margin-bottom:6px;}
+.page-header p{color:rgba(255,255,255,.55);font-size:.9rem;}
+.shop-wrap{max-width:1100px;margin:0 auto;padding-block:32px 60px;}
+.shop-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+.results-label{font-size:.88rem;color:var(--fg2);}
+.search-bar input{flex:1;padding:9px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--fg);font-family:inherit;font-size:.875rem;outline:none;min-width:220px;}
+.search-bar input:focus{border-color:var(--accent);}
+.cat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.pill{background:var(--surface);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-size:.8rem;font-weight:600;color:var(--fg2);cursor:pointer;transition:all .18s;}
+.pill:hover{border-color:var(--accent);color:var(--accent);}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.card-img-wrap{width:100%;height:190px;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-emoji{font-size:4rem;line-height:1;}
+.card-body{padding:14px 16px 10px;flex:1;display:flex;flex-direction:column;gap:3px;}
+.card-cat{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);}
+.card-name{font-weight:700;font-size:1rem;color:var(--fg);line-height:1.3;margin-top:2px;}
+.card-unit{font-size:.76rem;color:var(--fg3);}
+.card-desc{font-size:.78rem;color:var(--fg2);line-height:1.5;margin-top:4px;flex:1;}
+.card-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+.card-price{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--fg);}
+.stock-pill{font-size:.65rem;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:99px;text-transform:uppercase;}
+.stock-ok{background:var(--accent-lt);color:var(--accent);}
+.stock-low{background:var(--gold-lt);color:var(--gold);}
+.stock-out{background:#fee2e2;color:var(--danger);}
+.card-footer{padding:0 16px 16px;margin-top:10px;}
+.btn-add{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:.9rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s;}
+.btn-add:hover:not(:disabled){background:var(--accent-mid);}
+.btn-add:disabled{background:var(--fg3);cursor:not-allowed;}
+.empty{text-align:center;padding:64px 24px;color:var(--fg2);grid-column:1/-1;}
+.empty-icon{font-size:3rem;margin-bottom:12px;}
+.empty h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--fg);margin-bottom:8px;}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#fff;padding:12px 20px;border-radius:var(--radius-sm);font-size:.88rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:999;}
+.toast.show{transform:translateY(0);opacity:1;}
+footer{background:var(--nav-bg);color:rgba(255,255,255,.5);text-align:center;padding:28px;font-size:.82rem;margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));}
+footer strong{color:rgba(255,255,255,.8);}
+@media(max-width:600px){.product-grid{grid-template-columns:repeat(2,1fr);gap:12px;}.nav-links{display:none;}.card-img-wrap{height:140px;}}
 </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">🛒 Retail Shop</a>
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-        <li class="nav-item"><a class="nav-link" href="orders.html">Orders</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-      </ul>
-    </div>
+<nav class="navbar">
+  <a class="nav-brand" href="index.html">🌿 Fresh Market</a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="orders.html">Orders</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="About_us.html">About Us</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" id="login-nav" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:.875rem;font-weight:500;padding:6px 10px;">Login</a>
+    <a class="nav-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
   </div>
 </nav>
-
-<section class="page-hero">
-  <h1>Our Products</h1>
-  <p>Fresh groceries at unbeatable prices</p>
-</section>
-
-<div class="container py-5">
-
-  <!-- Category Filter -->
-  <div class="mb-4 text-center" id="category-filters">
-    <button class="btn btn-outline-dark me-2 btn-filter active" onclick="filterCategory(null, this)">All</button>
-  </div>
-
-  <!-- Alert -->
-  <div id="alert-box" class="alert alert-success d-none"></div>
-
-  <!-- Products Grid -->
-  <div class="row g-4" id="products-grid">
-    <div class="col-12 text-center py-5">
-      <div class="spinner-border text-secondary" role="status"></div>
-      <p class="mt-2 text-muted">Loading products...</p>
-    </div>
-  </div>
-
+<div class="page-header">
+  <h1>Fresh Products</h1>
+  <p>Farm-fresh groceries, delivered to your door</p>
 </div>
-
-<footer>
-  <p>© 2026 Retail Shop | All Rights Reserved</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="shop-wrap">
+  <div class="shop-top">
+    <div class="results-label" id="results-label">Loading...</div>
+    <div class="search-bar"><input type="text" id="search" placeholder="Search products..." oninput="filterProducts()"></div>
+  </div>
+  <div class="cat-pills" id="cat-pills"><button class="pill active" onclick="setCategory('all',this)">All Products</button></div>
+  <div class="product-grid" id="product-grid"></div>
+</div>
+<div class="toast" id="toast"></div>
+<footer><strong>🌿 Fresh Market</strong> — Your local grocery, online &nbsp;·&nbsp; © 2026</footer>
 <script>
-const API = 'http://localhost:3000';
-let allProducts = [];
-let activeCategoryId = null;
-
-// Load categories into filter buttons
-async function loadCategories() {
-  try {
-    const res = await fetch(`${API}/api/categories`);
-    const data = await res.json();
-    const bar = document.getElementById('category-filters');
-    data.categories.forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = 'btn btn-outline-dark me-2 mb-2 btn-filter';
-      btn.textContent = cat.name;
-      btn.onclick = () => filterCategory(cat.id, btn);
-      bar.appendChild(btn);
-    });
-  } catch (e) {
-    console.error('Failed to load categories', e);
-  }
+const API='http://localhost:3000';
+const userId=localStorage.getItem('userId')||3;
+let allProducts=[];
+let activeCategory='all';
+const catEmoji={'Fruit & Veg':'🥦','Dairy & Eggs':'🥛','Meat & Seafood':'🥩','Bakery':'🍞','Pantry':'🫙','Frozen Foods':'🧊','Drinks':'🧃'};
+const uName=localStorage.getItem('userName');
+const loginNav=document.getElementById('login-nav');
+if(uName&&loginNav)loginNav.textContent='👤 '+uName;
+async function refreshCartCount(){try{const r=await fetch(API+'/api/cart/'+userId);const d=await r.json();const items=d.items||d||[];document.getElementById('cart-count').textContent=items.reduce((s,i)=>s+(i.quantity||1),0);}catch{}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function setCategory(cat,btn){activeCategory=cat;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');renderProducts();}
+function filterProducts(){renderProducts();}
+function renderProducts(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const filtered=allProducts.filter(p=>{
+    const mc=activeCategory==='all'||p.category===activeCategory;
+    const mq=!q||p.name.toLowerCase().includes(q)||(p.description||'').toLowerCase().includes(q);
+    return mc&&mq;
+  });
+  document.getElementById('results-label').textContent=filtered.length===allProducts.length?allProducts.length+' products':filtered.length+' of '+allProducts.length+' products';
+  const grid=document.getElementById('product-grid');
+  if(!filtered.length){grid.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><h3>No products found</h3><p>Try a different search or category.</p></div>';return;}
+  grid.innerHTML=filtered.map(p=>{
+    const inStock=p.stock>0;
+    const isLow=p.stock>0&&p.stock<=5;
+    const sc=!inStock?'stock-out':isLow?'stock-low':'stock-ok';
+    const sl=!inStock?'Out of stock':isLow?'Only '+p.stock+' left':'In Stock';
+    const imgHtml=p.image_url?'<img src="'+p.image_url+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">':'';
+    const emojiHtml='<div class="img-emoji" style="'+(p.image_url?'display:none':'')+'">'+(catEmoji[p.category]||'📦')+'</div>';
+    return '<div class="card"><div class="card-img-wrap">'+imgHtml+emojiHtml+'</div><div class="card-body"><div class="card-cat">'+(catEmoji[p.category]||'📦')+' '+(p.category||'')+'</div><div class="card-name">'+p.name+'</div><div class="card-unit">per '+(p.unit||'item')+'</div><div class="card-desc">'+(p.description||'')+'</div><div class="card-price-row"><div class="card-price">$'+parseFloat(p.price).toFixed(2)+'</div><span class="stock-pill '+sc+'">'+sl+'</span></div></div><div class="card-footer"><button class="btn-add" onclick="addToCart('+p.id+',this)" '+(inStock?'':'disabled')+'>'+( inStock?'🛒 Add to Cart':'✗ Out of Stock')+'</button></div></div>';
+  }).join('');
 }
-
-// Load all products
-async function loadProducts() {
-  try {
-    const res = await fetch(`${API}/api/products`);
-    const data = await res.json();
-    allProducts = data.products;
-    renderProducts(allProducts);
-  } catch (e) {
-    document.getElementById('products-grid').innerHTML = `
-      <div class="col-12 text-center py-5">
-        <h4 class="text-muted">Could not connect to the API.</h4>
-        <p>Make sure your server is running: <code>node server.js</code></p>
-      </div>`;
-  }
-}
-
-// Filter by category
-function filterCategory(categoryId, btn) {
-  activeCategoryId = categoryId;
-  document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (categoryId === null) {
-    renderProducts(allProducts);
-  } else {
-    renderProducts(allProducts.filter(p => {
-      // match by category name since we store category name in products
-      return p.category_id === categoryId || p.category === btn.textContent;
-    }));
-  }
-}
-
-// Render product cards
-function renderProducts(products) {
-  const grid = document.getElementById('products-grid');
-  if (products.length === 0) {
-    grid.innerHTML = `
-      <div class="col-12 text-center py-5">
-        <h4 class="text-muted">No products in this category.</h4>
-      </div>`;
-    return;
-  }
-  grid.innerHTML = products.map(p => `
-    <div class="col-md-4">
-      <div class="card product-card shadow">
-        ${p.image_url
-          ? `<img src="${p.image_url}" class="card-img-top" style="height:200px;object-fit:cover;" alt="${p.name}">`
-          : `<div class="bg-light d-flex align-items-center justify-content-center" style="height:200px;font-size:48px;">🛒</div>`
-        }
-        <div class="card-body">
-          <span class="badge bg-secondary mb-2">${p.category}</span>
-          <h5>${p.name}</h5>
-          <p class="text-muted small">${p.description || ''}</p>
-          <p class="fw-bold fs-5 text-success">$${parseFloat(p.price).toFixed(2)} <small class="text-muted fw-normal fs-6">/ ${p.unit}</small></p>
-          ${p.stock > 0
-            ? `<button class="btn btn-success w-100" onclick="addToCart(${p.id}, '${p.name}')">Add To Cart</button>`
-            : `<button class="btn btn-secondary w-100" disabled>Out of Stock</button>`
-          }
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Add to cart (user_id 3 = john, change as needed)
-async function addToCart(productId, productName) {
-  const userId = localStorage.getItem('userId') || 3;
-  try {
-    const res = await fetch(`${API}/api/cart/${userId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ product_id: productId, quantity: 1 })
-    });
-    if (res.ok) {
-      showAlert(`✅ ${productName} added to cart!`);
-    } else {
-      showAlert(`❌ Failed to add to cart.`, 'danger');
-    }
-  } catch (e) {
-    showAlert('❌ Could not connect to server.', 'danger');
-  }
-}
-
-function showAlert(msg, type = 'success') {
-  const box = document.getElementById('alert-box');
-  box.className = `alert alert-${type}`;
-  box.textContent = msg;
-  box.classList.remove('d-none');
-  setTimeout(() => box.classList.add('d-none'), 3000);
-}
-
-// Init
-loadCategories();
+async function addToCart(productId,btn){btn.disabled=true;btn.textContent='Adding…';try{const r=await fetch(API+'/api/cart/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,productId,quantity:1})});if(r.ok){showToast('✅ Added to cart!');refreshCartCount();}else showToast('⚠️ Could not add.');}catch{showToast('⚠️ Server not reachable.');}btn.disabled=false;btn.innerHTML='🛒 Add to Cart';}
+async function loadProducts(){try{const r=await fetch(API+'/api/products');const data=await r.json();allProducts=data.products||data;const cats=[...new Set(allProducts.map(p=>p.category).filter(Boolean))];const pe=document.getElementById('cat-pills');cats.forEach(cat=>{const btn=document.createElement('button');btn.className='pill';btn.textContent=(catEmoji[cat]||'📦')+' '+cat;btn.onclick=()=>setCategory(cat,btn);pe.appendChild(btn);});renderProducts();refreshCartCount();}catch{document.getElementById('product-grid').innerHTML='<div class="empty"><div class="empty-icon">⚠️</div><h3>Server offline</h3><p>Run: node backend/server.js</p></div>';document.getElementById('results-label').textContent='Server offline';}}
 loadProducts();
 </script>
 </body>
